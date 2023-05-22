@@ -15,7 +15,7 @@ namespace pong {
         Up: 0,
         Down: 1
     }
-    const showIcon = () =>
+    const searchIcon = () =>
         basic.showLeds(`
 ..##.
 .#..#
@@ -59,9 +59,12 @@ namespace pong {
     //% block
     //% group.min=0 group.max= 256
     export function StartGame(group: number): void {
+        canStart = false
+        connected = false
+        gameOver = false
         basic.clearScreen()
         radio.setGroup(group)
-        showIcon()
+        searchIcon()
         radio.sendString("connect")
         radio.onReceivedString(function (name: string) {
             if (name == "connect") {
